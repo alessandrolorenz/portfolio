@@ -32,9 +32,104 @@
   * License: https://bootstrapmade.com/license/
   * Customized by: Alessandro Lorenz
   ======================================================== -->
+  <style>
+    body {
+      margin: 0;
+    }
+    canvas {
+      display: block; 
+      z-index: 2;
+    }
+  </style>
 </head>
 
 <body class="index-page">
+  
+
+  <script type="module">
+    import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.module.js';
+    import { GLTFLoader } from 'https://unpkg.com/three@0.126.0/examples/jsm/loaders/GLTFLoader.js';
+    import { OrbitControls } from 'https://unpkg.com/three@0.126.0/examples/jsm/controls/OrbitControls.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Código Three.js
+      const canvas = document.querySelector('.webgl')
+      const scene = new THREE.Scene()
+      const textureLoader = new THREE.TextureLoader()
+      const sizes = {
+          width: window.innerWidth,
+          height: window.innerHeight
+      }
+
+      // Base camera
+      const camera = new THREE.PerspectiveCamera(10, sizes.width / sizes.height, 0.1, 100)
+      camera.position.x = 18
+      camera.position.y = 8
+      camera.position.z = 50
+      scene.add(camera)
+      console.log(THREE);
+      //Controls
+      const controls = new OrbitControls(camera, canvas)
+      controls.enableDamping = true
+      controls.enableZoom = false
+      controls.enablePan = false
+      controls.minDistance = 20
+      controls.maxDistance = 40
+
+
+      // Renderer
+      const renderer = new THREE.WebGLRenderer({
+          canvas: canvas,
+          antialias: true,
+          alpha: true
+      })
+
+      renderer.setSize(sizes.width, sizes.height)
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+      renderer.outputEncoding = THREE.sRGBEncoding
+
+      // Materials
+      const bakedTexture = textureLoader.load('https://rawcdn.githack.com/ricardoolivaalonso/ThreeJS-Room05/ae27bdffd31dcc5cd5a919263f8f1c6874e05400/baked.jpg')
+      bakedTexture.flipY = false
+      bakedTexture.encoding = THREE.sRGBEncoding
+
+      const bakedMaterial = new THREE.MeshBasicMaterial({
+          map: bakedTexture,
+          side: THREE.DoubleSide,
+      })
+
+      //Loader
+      const loader = new GLTFLoader()
+      loader.load('/assets/img/Drumkit.glb',
+          (gltf) => {
+              const model = gltf.scene
+              model.traverse( child => child.material = bakedMaterial )
+              scene.add(model)
+          },
+          ( xhr ) => {
+              console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' )
+          }
+      )
+
+      window.addEventListener('resize', () =>
+      {
+          sizes.width = window.innerWidth
+          sizes.height = window.innerHeight
+          camera.aspect = sizes.width / sizes.height
+          camera.updateProjectionMatrix()
+          renderer.setSize(sizes.width, sizes.height)
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+      })
+      // Animation
+      const tick = () => {
+          controls.update()
+          renderer.render(scene, camera)
+          window.requestAnimationFrame(tick)
+      }
+
+      tick()
+    });
+  </script>
 
   <header id="header" class="header d-flex flex-column justify-content-center">
 
@@ -232,7 +327,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Resume</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <p>Explore my professional journey and achievements, from mastering front-end development to excelling in video production and motion graphics. With a solid educational background and diverse experience across technology and creative fields, I have honed the skills needed to deliver innovative solutions and impactful results. Below, you will find an overview of my education, professional milestones, and the tools and technologies that have shaped my career.</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -254,20 +349,46 @@
 
             <h3 class="resume-title">Education</h3>
             <div class="resume-item">
-              
-
-
-              <h4>Master of Business Administration (M.B.A.), Strategic Marketing and Sales Management</h4>
-              <h5>2009 - 2010</h5>
-              <p><em>Universidade de Passo Fundo</em></p>
-              <p>Passo Fundo RS - Brazil</p>
+              <h4>Computer Systems Analyst</h4>
+              <h5>2018 - 2021</h5>
+              <p><em>University of Passo Fundo / Estácio de Sá College</em></p>
+              <p>Passo Fundo, RS - Brazil</p>
+            </div><!-- Edn Resume Item -->
+            
+            <div class="resume-item">
+              <h4>Course: "Aesthetics of Audiovisual Languages" as a special student in the Master's program in Communication, Social Communication</h4>
+              <h5>2015</h5>
+              <p><em>Federal University of Rio Grande do Sul</em></p>
+              <p>Porto Alegre, RS - Brazil</p>
             </div><!-- Edn Resume Item -->
 
             <div class="resume-item">
-              <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-              <h5>2010 - 2014</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
+              <h4>Certificate III & IV in Business, Business Administration and Management</h4>
+              <h5>2012</h5>
+              <p><em>Mercury Colleges</em></p>
+              <p>Passo Fundo, RS - Brazil</p>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>Mercury Colleges
+                General English, Communication</h4>
+              <h5>2011</h5>
+              <p><em>Mercury Colleges</em></p>
+              <p>Passo Fundo, RS - Brazil</p>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>M.B.A. Strategic Marketing and Sales Management</h4>
+              <h5>2009 - 2010</h5>
+              <p><em>University of Passo Fundo</em></p>
+              <p>Passo Fundo, RS - Brazil</p>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>Bachelor of Comunication Advertising</h4>
+              <h5>1997 - 2000</h5>
+              <p><em>University of Passo Fundo</em></p>
+              <p>Passo Fundo RS - Brazil</p>  
             </div><!-- Edn Resume Item -->
 
           </div>
@@ -299,14 +420,20 @@
             </div><!-- Edn Resume Item -->
 
             <div class="resume-item">
-              <h4>Graphic design specialist</h4>
-              <h5>2017 - 2018</h5>
-              <p><em>Stepping Stone Advertising, New York, NY</em></p>
+              <h4>Editor and Videographer</h4>
+              <h5>2013 - 2018</h5>
+              <p><em>UPFTV - Futura Channel</em></p>
               <ul>
-                <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-                <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-                <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
+                <li>Video editing and post-production. Created intros and motion graphics for the channel. Produced animated illustrations and infographics for news reports and programs aired by UPFTV. Directed the visuals for various programs.</li>
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>Editor and Videographer</h4>
+              <h5>2013</h5>
+              <p><em>Creativa Produtora - Creativa Video Productions</em></p>
+              <ul>
+                <li>Video editing and finalization, processing of digital effects, illustrations, and other image compositions and assemblies. Color correction, audio enhancement, texturing, and other transformations required to ensure the quality of the projects.</li>
               </ul>
             </div><!-- Edn Resume Item -->
 
@@ -324,7 +451,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Portfolio</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <p>Welcome to my portfolio, where creativity meets precision. Here, you'll find a collection of projects that highlight my expertise in video editing, digital effects, and motion design. Each piece reflects my commitment to delivering high-quality visuals, with a focus on storytelling, innovation, and technical excellence.</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -475,6 +602,8 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <canvas class="webgl"></canvas>
+
 
 </body>
 
