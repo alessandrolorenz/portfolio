@@ -15,7 +15,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -32,114 +34,13 @@
   * License: https://bootstrapmade.com/license/
   * Customized by: Alessandro Lorenz
   ======================================================== -->
-  <style>
-    body {
-      margin: 0;
-    }
-    canvas {
-      display: block; 
-      z-index: 2;
-    }
-  </style>
+
 </head>
 
 <body class="index-page">
-  
-
-  <script type="module">
-    import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.module.js';
-    import { GLTFLoader } from 'https://unpkg.com/three@0.126.0/examples/jsm/loaders/GLTFLoader.js';
-    import { OrbitControls } from 'https://unpkg.com/three@0.126.0/examples/jsm/controls/OrbitControls.js';
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Código Three.js
-      const canvas = document.querySelector('.webgl')
-      const scene = new THREE.Scene()
-      const textureLoader = new THREE.TextureLoader()
-      const sizes = {
-          width: window.innerWidth - 200,
-          height: window.innerHeight - 200
-      }
-
-      // Base camera
-      const camera = new THREE.PerspectiveCamera(10, sizes.width / sizes.height, 0.1, 100)
-      camera.position.x = 18
-      camera.position.y = 8
-      camera.position.z = 50
-      scene.add(camera)
-      //Controls
-      const controls = new OrbitControls(camera, canvas)
-      controls.enableDamping = true
-      controls.enableZoom = false
-      controls.enablePan = false
-      controls.minDistance = 20
-      controls.maxDistance = 40
-      
-
-      // console.log('camera');
-      // console.log(camera);
-      // console.log(scene);
-      // console.log(controls);
 
 
-      // Renderer
-      const renderer = new THREE.WebGLRenderer({
-          canvas: canvas,
-          antialias: true,
-          alpha: true
-      })
 
-      renderer.setSize(sizes.width, sizes.height)
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-      renderer.outputEncoding = THREE.sRGBEncoding
-
-      // Materials
-      const bakedTexture = textureLoader.load('/assets/img/wood.png')
-      bakedTexture.flipY = false
-      bakedTexture.encoding = THREE.sRGBEncoding
-
-      const bakedMaterial = new THREE.MeshBasicMaterial({
-          map: bakedTexture,
-          side: THREE.DoubleSide,
-      })
-
-      //Loader
-      const loader = new GLTFLoader()
-      loader.load('/assets/img/Generic-Male.glb',
-          (gltf) => {
-              const model = gltf.scene
-              model.traverse( child => child.material = bakedMaterial )
-              scene.add(model)
-          },
-          ( xhr ) => {
-              console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' )
-          }
-      )
-
-      setInterval(function(){
-        if(scene && scene.children[1]) scene.children[1].rotation.y += 0.001;
-        }, 5);
-
-      window.addEventListener('resize', () =>
-      {
-          sizes.width = window.innerWidth - 200
-          sizes.height = window.innerHeight - 200
-          camera.aspect = sizes.width / sizes.height
-          camera.updateProjectionMatrix()
-          renderer.setSize(sizes.width, sizes.height)
-          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-      })
-      // Animation
-      const tick = () => {
-        // console.log('tick');
-          controls.update()
-          renderer.render(scene, camera)
-          window.requestAnimationFrame(tick)
-      }
-
-      tick()
-    });
-  </script>
 
   <header id="header" class="header d-flex flex-column justify-content-center">
 
@@ -163,24 +64,11 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section light-background">
 
-      <video
-      id="bg-video"
-      width="320"
-      height="240"
-      controls
-      preload="none"
-      autoPlay
-      muted
-  >
-      <source src="/portfolio.mp4" type="video/mp4" />
-      <track
-          src="/path/to/captions.vtt"
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-      />
-      Your browser does not support the video tag.
-  </video>
+      <video id="bg-video" width="320" height="240" controls preload="none" autoPlay muted>
+        <source src="/portfolio.mp4" type="video/mp4" />
+        <track src="/path/to/captions.vtt" kind="subtitles" srcLang="en" label="English" />
+        Your browser does not support the video tag.
+      </video>
 
 
       <!-- <img src="assets/img/eu.png" alt=""> -->
@@ -189,7 +77,8 @@
         <div class="row justify-content-center">
           <div class="col-lg-9">
             <h2>Alessandro Lorenz</h2>
-            <p>I'm <span class="typed" data-typed-items="Developer, Video Editor, Videographer">Developer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+            <p>I'm <span class="typed" data-typed-items="Developer, Video Editor, Videographer">Developer</span><span
+                class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
             <div class="social-links">
               <a href="#"><i class="bi bi-instagram"></i></a>
               <a href="#"><i class="bi bi-linkedin"></i></a>
@@ -206,7 +95,8 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>About</h2>
-        I am a Front End Developer with a background in motion graphics and video editing. This background has enhanced my understanding of visual elements and user experience in my current role as a Front End Developer.
+        I am a Front End Developer with a background in motion graphics and video editing. This background has enhanced
+        my understanding of visual elements and user experience in my current role as a Front End Developer.
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -230,13 +120,15 @@
             <div class="row">
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Florianópolis, SC - Brazil</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Florianópolis, SC - Brazil</span>
+                  </li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>alessandro.lorenz@gmail.com</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong>
+                    <span>alessandro.lorenz@gmail.com</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
                 </ul>
               </div>
-             
+
             </div>
             <p class="py-3">
               I enjoy being at the forefront of innovation and I am fascinated by new
@@ -248,374 +140,433 @@
 
       </div>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills section">
+      <!-- Skills Section -->
+      <section id="skills" class="skills section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Skills</h2>
-        <p>These are some of the skills I can offer as my work</p>
-      </div><!-- End Section Title -->
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Skills</h2>
+          <p>These are some of the skills I can offer as my work</p>
+        </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="row skills-content skills-animation">
+          <div class="row skills-content skills-animation">
 
-          <div class="col-lg-4">
+            <div class="col-lg-4">
 
-            <div class="progress">
-              <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+              <div class="progress">
+                <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+              </div><!-- End Skills Item -->
 
-            <div class="progress">
-              <span class="skill"><span>CSS, CSS3, Bootstrap, Tailwind</span> <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+              <div class="progress">
+                <span class="skill"><span>CSS, CSS3, Bootstrap, Tailwind</span> <i class="val">100%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+              </div><!-- End Skills Item -->
 
-            <div class="progress">
-              <span class="skill"><span>JavaScript</span> <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+              <div class="progress">
+                <span class="skill"><span>JavaScript</span> <i class="val">100%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+              </div><!-- End Skills Item -->
 
-            <div class="progress">
-              <span class="skill"><span>React / Next / Storybook / Frameworks</span> <i class="val">95%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+              <div class="progress">
+                <span class="skill"><span>React / Next / Storybook / Frameworks</span> <i class="val">95%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </div><!-- End Skills Item -->
 
-          </div>
+            </div>
 
-          <div class="col-lg-4">
+            <div class="col-lg-4">
 
-            <div class="progress">
-              <span class="skill"><span>NodeJs, Express, Swagger, Microservices</span> <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+              <div class="progress">
+                <span class="skill"><span>NodeJs, Express, Swagger, Microservices</span> <i class="val">75%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </div><!-- End Skills Item -->
 
-            <div class="progress">
-              <span class="skill"><span>Git / Github / Gitlab / Gitflow</span> <i class="val">95%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+              <div class="progress">
+                <span class="skill"><span>Git / Github / Gitlab / Gitflow</span> <i class="val">95%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </div><!-- End Skills Item -->
 
-            <div class="progress">
-              <span class="skill"><span>Oracle Commerce Cloud (OCC) - OSF / Endeca</span> <i class="val">70%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+              <div class="progress">
+                <span class="skill"><span>Oracle Commerce Cloud (OCC) - OSF / Endeca</span> <i
+                    class="val">70%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </div><!-- End Skills Item -->
 
-            <div class="progress">
-              <span class="skill"><span>Figma</span> <i class="val">70%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+              <div class="progress">
+                <span class="skill"><span>Figma</span> <i class="val">70%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </div><!-- End Skills Item -->
 
-          </div>
+            </div>
 
-          <div class="col-lg-4">
+            <div class="col-lg-4">
 
-            <div class="progress">
-              <span class="skill"><span>Photoshop / Ilustrator</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+              <div class="progress">
+                <span class="skill"><span>Photoshop / Ilustrator</span> <i class="val">90%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </div><!-- End Skills Item -->
 
-            <div class="progress">
-              <span class="skill"><span>Premiere / AfterEfects</span> <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+              <div class="progress">
+                <span class="skill"><span>Premiere / AfterEfects</span> <i class="val">100%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+              </div><!-- End Skills Item -->
 
-            <div class="progress">
-              <span class="skill"><span>Blender</span> <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+              <div class="progress">
+                <span class="skill"><span>Blender</span> <i class="val">55%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </div><!-- End Skills Item -->
 
-            <div class="progress">
-              <span class="skill"><span>English</span> <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+              <div class="progress">
+                <span class="skill"><span>English</span> <i class="val">75%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </div><!-- End Skills Item -->
 
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- /Skills Section -->
-
-    <!-- Resume Section -->
-    <section id="resume" class="resume section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
-        <p>Explore my professional journey and achievements, from mastering front-end development to excelling in video production and motion graphics. With a solid educational background and diverse experience across technology and creative fields, I have honed the skills needed to deliver innovative solutions and impactful results. Below, you will find an overview of my education, professional milestones, and the tools and technologies that have shaped my career.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Sumary</h3>
-
-            <div class="resume-item pb-0">
-              <h4>Alessandro Lorenz</h4>
-              <p><em>Experienced Front End Developer with a strong background in motion graphics and video editing, bringing a unique blend of technical and creative skills to deliver visually appealing and user-friendly web applications.</em></p>
-              <ul>
-                <li>Florianópils, SC - Brazil</li>
-                <li>(55) 48 99188 6699</li>
-                <li>alessandro.lorenz@gmail.com</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Computer Systems Analyst</h4>
-              <h5>2018 - 2021</h5>
-              <p><em>University of Passo Fundo / Estácio de Sá College</em></p>
-              <p>Passo Fundo, RS - Brazil</p>
-            </div><!-- Edn Resume Item -->
-            
-            <div class="resume-item">
-              <h4>Course: "Aesthetics of Audiovisual Languages" as a special student in the Master's program in Communication, Social Communication</h4>
-              <h5>2015</h5>
-              <p><em>Federal University of Rio Grande do Sul</em></p>
-              <p>Porto Alegre, RS - Brazil</p>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Certificate III & IV in Business, Business Administration and Management</h4>
-              <h5>2012</h5>
-              <p><em>Mercury Colleges</em></p>
-              <p>Passo Fundo, RS - Brazil</p>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Mercury Colleges
-                General English, Communication</h4>
-              <h5>2011</h5>
-              <p><em>Mercury Colleges</em></p>
-              <p>Passo Fundo, RS - Brazil</p>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>M.B.A. Strategic Marketing and Sales Management</h4>
-              <h5>2009 - 2010</h5>
-              <p><em>University of Passo Fundo</em></p>
-              <p>Passo Fundo, RS - Brazil</p>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Bachelor of Comunication Advertising</h4>
-              <h5>1997 - 2000</h5>
-              <p><em>University of Passo Fundo</em></p>
-              <p>Passo Fundo RS - Brazil</p>  
-            </div><!-- Edn Resume Item -->
-
-          </div>
-
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>Senior Front End Developer</h4>
-              <h5>2020 - Present</h5>
-              <p><em>Compass.uol</em></p>
-              <ul>
-                <li>JavaScript; HTML; CSS; SASS; ReactJS; VeuJS; NodeJS; MongoDB; Git; Scrum;</li>
-              </ul>
-              
-              <h4>Back-end Developer</h4>
-              <h5>Feb 2020 - Apr 2020</h5>
-              <p><em>Compass.uol</em></p>
-              <ul>
-                <li>Backend development and  microservices integration with Node.js - Stack: ES6+; Node.js; Docker; Jenkins; Integração de APIs; Swagger; Redis; MongoDB; Git; Jest; Scrum; Postman;</li>
-              </ul>
-
-              <h4>Junior Back-end Developer</h4>
-              <h5>Apr 2019 - Jan 2020</h5>
-              <p><em>Compass.uol</em></p>
-              <ul>
-                <li>Backend development and  microservices integration with Node.js - Stack: ES6+; Node.js; Docker; Jenkins; Integração de APIs; Swagger; Redis; MongoDB; Git; Jest; Scrum; Postman;</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Editor and Videographer</h4>
-              <h5>2013 - 2018</h5>
-              <p><em>UPFTV - Futura Channel</em></p>
-              <ul>
-                <li>Video editing and post-production. Created intros and motion graphics for the channel. Produced animated illustrations and infographics for news reports and programs aired by UPFTV. Directed the visuals for various programs.</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Editor and Videographer</h4>
-              <h5>2013</h5>
-              <p><em>Creativa Produtora - Creativa Video Productions</em></p>
-              <ul>
-                <li>Video editing and finalization, processing of digital effects, illustrations, and other image compositions and assemblies. Color correction, audio enhancement, texturing, and other transformations required to ensure the quality of the projects.</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
+            </div>
 
           </div>
 
         </div>
 
-      </div>
+      </section><!-- /Skills Section -->
 
-    </section><!-- /Resume Section -->
+      <!-- Resume Section -->
+      <section id="resume" class="resume section">
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Resume</h2>
+          <p>Explore my professional journey and achievements, from mastering front-end development to excelling in
+            video production and motion graphics. With a solid educational background and diverse experience across
+            technology and creative fields, I have honed the skills needed to deliver innovative solutions and impactful
+            results. Below, you will find an overview of my education, professional milestones, and the tools and
+            technologies that have shaped my career.</p>
+        </div><!-- End Section Title -->
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
-        <p>Welcome to my portfolio, where creativity meets precision. Here, you'll find a collection of projects that highlight my expertise in video editing, digital effects, and motion design. Each piece reflects my commitment to delivering high-quality visuals, with a focus on storytelling, innovation, and technical excellence.</p>
-      </div><!-- End Section Title -->
+        <div class="container">
 
-      <div class="container">
+          <div class="row">
 
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+              <h3 class="resume-title">Sumary</h3>
 
-          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">Video Editing</li>
-            <li data-filter=".filter-product">Videographics</li>
-            <li data-filter=".filter-branding">TV Show</li>
-          </ul><!-- End Portfolio Filters -->
+              <div class="resume-item pb-0">
+                <h4>Alessandro Lorenz</h4>
+                <p><em>Experienced Front End Developer with a strong background in motion graphics and video editing,
+                    bringing a unique blend of technical and creative skills to deliver visually appealing and
+                    user-friendly web applications.</em></p>
+                <ul>
+                  <li>Florianópils, SC - Brazil</li>
+                  <li>(55) 48 99188 6699</li>
+                  <li>alessandro.lorenz@gmail.com</li>
+                </ul>
+              </div><!-- Edn Resume Item -->
 
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+              <h3 class="resume-title">Education</h3>
+              <div class="resume-item">
+                <h4>Computer Systems Analyst</h4>
+                <h5>2018 - 2021</h5>
+                <p><em>University of Passo Fundo / Estácio de Sá College</em></p>
+                <p>Passo Fundo, RS - Brazil</p>
+              </div><!-- Edn Resume Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Demo Reel</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="https://www.youtube.com/embed/5NlHDliKrmc?autoplay=0" title="App 1" data-gallery="portfolio-gallery-app" type="video" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
+              <div class="resume-item">
+                <h4>Course: "Aesthetics of Audiovisual Languages" as a special student in the Master's program in
+                  Communication, Social Communication</h4>
+                <h5>2015</h5>
+                <p><em>Federal University of Rio Grande do Sul</em></p>
+                <p>Porto Alegre, RS - Brazil</p>
+              </div><!-- Edn Resume Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 1</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="https://www.youtube.com/embed/_NQjDoY1Xnk?autoplay=0"  type="video" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
+              <div class="resume-item">
+                <h4>Certificate III & IV in Business, Business Administration and Management</h4>
+                <h5>2012</h5>
+                <p><em>Mercury Colleges</em></p>
+                <p>Passo Fundo, RS - Brazil</p>
+              </div><!-- Edn Resume Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 1</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="https://www.youtube.com/embed/NGIbxr7JvAQ?autoplay=0"  type="video" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
+              <div class="resume-item">
+                <h4>Mercury Colleges
+                  General English, Communication</h4>
+                <h5>2011</h5>
+                <p><em>Mercury Colleges</em></p>
+                <p>Passo Fundo, RS - Brazil</p>
+              </div><!-- Edn Resume Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 2</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="https://www.youtube.com/embed/NGIbxr7JvAQ?autoplay=0"  type="video" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
+              <div class="resume-item">
+                <h4>M.B.A. Strategic Marketing and Sales Management</h4>
+                <h5>2009 - 2010</h5>
+                <p><em>University of Passo Fundo</em></p>
+                <p>Passo Fundo, RS - Brazil</p>
+              </div><!-- Edn Resume Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 2</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
+              <div class="resume-item">
+                <h4>Bachelor of Comunication Advertising</h4>
+                <h5>1997 - 2000</h5>
+                <p><em>University of Passo Fundo</em></p>
+                <p>Passo Fundo RS - Brazil</p>
+              </div><!-- Edn Resume Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 2xxxxxx</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Product 2xxxxx" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
+            </div>
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 2</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 3</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="https://www.youtube.com/embed/_NQjDoY1Xnk?autoplay=0"  type="video"  title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+              <h3 class="resume-title">Professional Experience</h3>
+              <div class="resume-item">
+                <h4>Senior Front End Developer</h4>
+                <h5>2020 - Present</h5>
+                <p><em>Compass.uol</em></p>
+                <ul>
+                  <li>JavaScript; HTML; CSS; SASS; ReactJS; VeuJS; NodeJS; MongoDB; Git; Scrum;</li>
+                </ul>
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 3</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
+                <h4>Back-end Developer</h4>
+                <h5>Feb 2020 - Apr 2020</h5>
+                <p><em>Compass.uol</em></p>
+                <ul>
+                  <li>Backend development and microservices integration with Node.js - Stack: ES6+; Node.js; Docker;
+                    Jenkins; Integração de APIs; Swagger; Redis; MongoDB; Git; Jest; Scrum; Postman;</li>
+                </ul>
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 3</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
+                <h4>Junior Back-end Developer</h4>
+                <h5>Apr 2019 - Jan 2020</h5>
+                <p><em>Compass.uol</em></p>
+                <ul>
+                  <li>Backend development and microservices integration with Node.js - Stack: ES6+; Node.js; Docker;
+                    Jenkins; Integração de APIs; Swagger; Redis; MongoDB; Git; Jest; Scrum; Postman;</li>
+                </ul>
+              </div><!-- Edn Resume Item -->
 
-          </div><!-- End Portfolio Container -->
+              <div class="resume-item">
+                <h4>Editor and Videographer</h4>
+                <h5>2013 - 2018</h5>
+                <p><em>UPFTV - Futura Channel</em></p>
+                <ul>
+                  <li>Video editing and post-production. Created intros and motion graphics for the channel. Produced
+                    animated illustrations and infographics for news reports and programs aired by UPFTV. Directed the
+                    visuals for various programs.</li>
+                </ul>
+              </div><!-- Edn Resume Item -->
+
+              <div class="resume-item">
+                <h4>Editor and Videographer</h4>
+                <h5>2013</h5>
+                <p><em>Creativa Produtora - Creativa Video Productions</em></p>
+                <ul>
+                  <li>Video editing and finalization, processing of digital effects, illustrations, and other image
+                    compositions and assemblies. Color correction, audio enhancement, texturing, and other
+                    transformations required to ensure the quality of the projects.</li>
+                </ul>
+              </div><!-- Edn Resume Item -->
+
+            </div>
+
+          </div>
 
         </div>
 
-      </div>
+      </section><!-- /Resume Section -->
 
-    </section><!-- /Portfolio Section -->
+      <!-- Portfolio Section -->
+      <section id="portfolio" class="portfolio section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Portfolio</h2>
+          <p>Welcome to my portfolio, where creativity meets precision. Here, you'll find a collection of projects that
+            highlight my expertise in video editing, digital effects, and motion design. Each piece reflects my
+            commitment to delivering high-quality visuals, with a focus on storytelling, innovation, and technical
+            excellence.</p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+          <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+            <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">Video Editing</li>
+              <li data-filter=".filter-product">Videographics</li>
+              <li data-filter=".filter-branding">TV Show</li>
+            </ul><!-- End Portfolio Filters -->
+
+            <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Demo Reel</h4>
+                  <p>Lorem ipsum, dolor sit</p>
+                  <a href="https://www.youtube.com/embed/5NlHDliKrmc?autoplay=0" title="App 1"
+                    data-gallery="portfolio-gallery-app" type="video" class="glightbox preview-link"><i
+                      class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                      class="bi bi-link-45deg"></i></a>
+                </div>
+              </div><!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Product 1</h4>
+                  <p>Lorem ipsum, dolor sit</p>
+                  <a href="https://www.youtube.com/embed/_NQjDoY1Xnk?autoplay=0" type="video" title="Product 1"
+                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                      class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                      class="bi bi-link-45deg"></i></a>
+                </div>
+              </div><!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Branding 1</h4>
+                  <p>Lorem ipsum, dolor sit</p>
+                  <a href="https://www.youtube.com/embed/NGIbxr7JvAQ?autoplay=0" type="video" title="Branding 1"
+                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                      class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                      class="bi bi-link-45deg"></i></a>
+                </div>
+              </div><!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>App 2</h4>
+                  <p>Lorem ipsum, dolor sit</p>
+                  <a href="https://www.youtube.com/embed/NGIbxr7JvAQ?autoplay=0" type="video" title="App 2"
+                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
+                      class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                      class="bi bi-link-45deg"></i></a>
+                </div>
+              </div><!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Product 2</h4>
+                  <p>Lorem ipsum, dolor sit</p>
+                  <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Product 2"
+                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                      class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                      class="bi bi-link-45deg"></i></a>
+                </div>
+              </div><!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Product 2xxxxxx</h4>
+                  <p>Lorem ipsum, dolor sit</p>
+                  <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Product 2xxxxx"
+                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                      class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                      class="bi bi-link-45deg"></i></a>
+                </div>
+              </div><!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Branding 2</h4>
+                  <p>Lorem ipsum, dolor sit</p>
+                  <a href="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" title="Branding 2"
+                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                      class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                      class="bi bi-link-45deg"></i></a>
+                </div>
+              </div><!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                <img src="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>App 3</h4>
+                  <p>Lorem ipsum, dolor sit</p>
+                  <a href="https://www.youtube.com/embed/_NQjDoY1Xnk?autoplay=0" type="video" title="App 3"
+                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
+                      class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                      class="bi bi-link-45deg"></i></a>
+                </div>
+              </div><!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Product 3</h4>
+                  <p>Lorem ipsum, dolor sit</p>
+                  <a href="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" title="Product 3"
+                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                      class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                      class="bi bi-link-45deg"></i></a>
+                </div>
+              </div><!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                <img src="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Branding 3</h4>
+                  <p>Lorem ipsum, dolor sit</p>
+                  <a href="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" title="Branding 2"
+                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                      class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                      class="bi bi-link-45deg"></i></a>
+                </div>
+              </div><!-- End Portfolio Item -->
+
+            </div><!-- End Portfolio Container -->
+
+          </div>
+
+        </div>
+
+      </section><!-- /Portfolio Section -->
 
 
   </main>
@@ -624,7 +575,8 @@
     <div class="container">
       <h3 class="sitename">Alessandro Lorenz</h3>
       <p>Keep in touch</p>
-      <p>If you have any questions or just want to say hi, feel free to reach out via social media or email. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+      <p>If you have any questions or just want to say hi, feel free to reach out via social media or email. I'm always
+        open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
       <div class="social-links d-flex justify-content-center">
 
         <a href=""><i class="bi bi-instagram"></i></a>
@@ -635,7 +587,8 @@
   </footer>
 
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
   <div id="preloader"></div>
@@ -655,7 +608,6 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <canvas class="webgl"></canvas>
 
 
 </body>
