@@ -80,9 +80,7 @@
             {
               "loop": true,
               "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
+        
               "slidesPerView": "auto",
               "navigation": {
                 "nextEl": ".swiper-button-next",
@@ -98,7 +96,16 @@
           <div class="swiper-wrapper align-items-center">
 
             <div class="swiper-slide">
-              <img src="assets/img/portfolio/app-1.jpg" alt="">
+              <!-- <img src="assets/img/portfolio/app-1.jpg" alt=""> -->
+              <iframe
+              style="width: calc((1200 / 1440)*100vw); height: calc((800 / 1440)*100vw);"
+              className="iframe-video m-auto"
+              src="https://www.youtube.com/embed/5NlHDliKrmc"
+              title="Demo Reel"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+          ></iframe> 
             </div>
 
             <div class="swiper-slide">

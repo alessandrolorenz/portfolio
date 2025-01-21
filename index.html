@@ -57,8 +57,8 @@
       const scene = new THREE.Scene()
       const textureLoader = new THREE.TextureLoader()
       const sizes = {
-          width: window.innerWidth,
-          height: window.innerHeight
+          width: window.innerWidth - 200,
+          height: window.innerHeight - 200
       }
 
       // Base camera
@@ -67,7 +67,6 @@
       camera.position.y = 8
       camera.position.z = 50
       scene.add(camera)
-      console.log(THREE);
       //Controls
       const controls = new OrbitControls(camera, canvas)
       controls.enableDamping = true
@@ -75,6 +74,12 @@
       controls.enablePan = false
       controls.minDistance = 20
       controls.maxDistance = 40
+      
+
+      // console.log('camera');
+      // console.log(camera);
+      // console.log(scene);
+      // console.log(controls);
 
 
       // Renderer
@@ -89,7 +94,7 @@
       renderer.outputEncoding = THREE.sRGBEncoding
 
       // Materials
-      const bakedTexture = textureLoader.load('https://rawcdn.githack.com/ricardoolivaalonso/ThreeJS-Room05/ae27bdffd31dcc5cd5a919263f8f1c6874e05400/baked.jpg')
+      const bakedTexture = textureLoader.load('/assets/img/wood.png')
       bakedTexture.flipY = false
       bakedTexture.encoding = THREE.sRGBEncoding
 
@@ -100,7 +105,7 @@
 
       //Loader
       const loader = new GLTFLoader()
-      loader.load('/assets/img/Drumkit.glb',
+      loader.load('/assets/img/Generic-Male.glb',
           (gltf) => {
               const model = gltf.scene
               model.traverse( child => child.material = bakedMaterial )
@@ -111,10 +116,14 @@
           }
       )
 
+      setInterval(function(){
+        if(scene && scene.children[1]) scene.children[1].rotation.y += 0.001;
+        }, 5);
+
       window.addEventListener('resize', () =>
       {
-          sizes.width = window.innerWidth
-          sizes.height = window.innerHeight
+          sizes.width = window.innerWidth - 200
+          sizes.height = window.innerHeight - 200
           camera.aspect = sizes.width / sizes.height
           camera.updateProjectionMatrix()
           renderer.setSize(sizes.width, sizes.height)
@@ -122,6 +131,7 @@
       })
       // Animation
       const tick = () => {
+        // console.log('tick');
           controls.update()
           renderer.render(scene, camera)
           window.requestAnimationFrame(tick)
@@ -179,7 +189,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-9">
             <h2>Alessandro Lorenz</h2>
-            <p>I'm <span class="typed" data-typed-items="Developer, Video Editor, Motion Graphics Designer">Developer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+            <p>I'm <span class="typed" data-typed-items="Developer, Video Editor, Videographer">Developer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
             <div class="social-links">
               <a href="#"><i class="bi bi-instagram"></i></a>
               <a href="#"><i class="bi bi-linkedin"></i></a>
@@ -251,7 +261,7 @@
 
         <div class="row skills-content skills-animation">
 
-          <div class="col-lg-6">
+          <div class="col-lg-4">
 
             <div class="progress">
               <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
@@ -261,7 +271,7 @@
             </div><!-- End Skills Item -->
 
             <div class="progress">
-              <span class="skill"><span>CSS</span> <i class="val">100%</i></span>
+              <span class="skill"><span>CSS, CSS3, Bootstrap, Tailwind</span> <i class="val">100%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
@@ -275,7 +285,7 @@
             </div><!-- End Skills Item -->
 
             <div class="progress">
-              <span class="skill"><span>React/Next/Frameworks</span> <i class="val">95%</i></span>
+              <span class="skill"><span>React / Next / Storybook / Frameworks</span> <i class="val">95%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
@@ -283,7 +293,39 @@
 
           </div>
 
-          <div class="col-lg-6">
+          <div class="col-lg-4">
+
+            <div class="progress">
+              <span class="skill"><span>NodeJs, Express, Swagger, Microservices</span> <i class="val">75%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>Git / Github / Gitlab / Gitflow</span> <i class="val">95%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>Oracle Commerce Cloud (OCC) - OSF / Endeca</span> <i class="val">70%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>Figma</span> <i class="val">70%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div><!-- End Skills Item -->
+
+          </div>
+
+          <div class="col-lg-4">
 
             <div class="progress">
               <span class="skill"><span>Photoshop / Ilustrator</span> <i class="val">90%</i></span>
@@ -460,9 +502,9 @@
 
           <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-product">Card</li>
-            <li data-filter=".filter-branding">Web</li>
+            <li data-filter=".filter-app">Video Editing</li>
+            <li data-filter=".filter-product">Videographics</li>
+            <li data-filter=".filter-branding">TV Show</li>
           </ul><!-- End Portfolio Filters -->
 
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
@@ -470,9 +512,9 @@
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
               <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>App 1</h4>
+                <h4>Demo Reel</h4>
                 <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="https://www.youtube.com/embed/5NlHDliKrmc?autoplay=0" title="App 1" data-gallery="portfolio-gallery-app" type="video" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
@@ -482,7 +524,7 @@
               <div class="portfolio-info">
                 <h4>Product 1</h4>
                 <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="https://www.youtube.com/embed/_NQjDoY1Xnk?autoplay=0"  type="video" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
@@ -492,7 +534,7 @@
               <div class="portfolio-info">
                 <h4>Branding 1</h4>
                 <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="https://www.youtube.com/embed/NGIbxr7JvAQ?autoplay=0"  type="video" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
@@ -502,7 +544,7 @@
               <div class="portfolio-info">
                 <h4>App 2</h4>
                 <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="https://www.youtube.com/embed/NGIbxr7JvAQ?autoplay=0"  type="video" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
@@ -513,6 +555,16 @@
                 <h4>Product 2</h4>
                 <p>Lorem ipsum, dolor sit</p>
                 <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Product 2xxxxxx</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Product 2xxxxx" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
@@ -532,7 +584,7 @@
               <div class="portfolio-info">
                 <h4>App 3</h4>
                 <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="https://www.youtube.com/embed/_NQjDoY1Xnk?autoplay=0"  type="video"  title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
@@ -602,6 +654,7 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
   <canvas class="webgl"></canvas>
 
 
