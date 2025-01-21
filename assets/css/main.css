@@ -105,6 +105,17 @@ h6 {
   font-family: var(--heading-font);
 }
 
+.container-videos {
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  gap: 1vw;
+}
+
+.container-videos iframe {
+  width: 36vw;
+  height: 21vw;
+}
+
 .swiper-slide {
   display: flex;
   justify-content: center;
