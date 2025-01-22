@@ -111,19 +111,32 @@ h6 {
   gap: 3vw;
 }
 .container-videos iframe {
-  width: 93.5vw;
-  height: 54vw;
+  width: calc((300 / 360) * 100vw);
+  height: calc((180 / 360) * 100vw);
+  justify-self: center;
 }
 
 @media screen and (min-width: 768px) {
   .container-videos {
     grid-template-columns: 1fr 1fr ;
-    gap: 1vw;
+    gap: 5vw;
   }
   
   .container-videos iframe {
-    width: 36vw;
-    height: 21vw;
+    width: calc((580 / 1440)* 100vw);
+    height: calc((320 / 1440)* 100vw);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container-videos {
+    grid-template-columns: 1fr 1fr ;
+    gap: 5vw;
+  }
+  
+  .container-videos iframe {
+    width: 600px;
+    height: 355px;
   }
 }
 
