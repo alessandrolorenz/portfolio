@@ -107,14 +107,25 @@ h6 {
 
 .container-videos {
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr;
   gap: 1vw;
 }
-
 .container-videos iframe {
   width: 36vw;
   height: 21vw;
 }
+
+@media screen and (min-width: 768px) {
+  .container-videos {
+    grid-template-columns: 1fr 1fr ;
+  }
+  
+  .container-videos iframe {
+    width: 36vw;
+    height: 21vw;
+  }
+}
+
 
 .swiper-slide {
   display: flex;
