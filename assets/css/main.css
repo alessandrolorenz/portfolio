@@ -55,6 +55,10 @@
   display: none !important;
 }
 
+.margin-bottom-60 {
+  margin-bottom: 60px;
+}
+
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
 .light-background {

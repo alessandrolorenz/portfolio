@@ -28,7 +28,8 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
+  <link href="assets/css/chatbot-styles.css" rel="stylesheet">
+<script src="/chatbotScripts.js"></script>
   <!-- =======================================================
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
@@ -418,11 +419,41 @@
       </section><!-- /Resume Section -->
 
       <!-- Portfolio Section -->
-      <section id="portfolio" class="portfolio section">
+      <section id="portfolio" class="portfolio section show-chatbot">
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-          <h2>Portfolio</h2>
+          <h2>Development Portfolio</h2>
+          <p>Here is an AI-powered chatbot built with Node.js and Express, integrated with Cohere's API for intelligent responses. Designed for seamless interaction, it supports real-time conversations and can be deployed on Vercel for global accessibility. The chatbot ensures smooth communication while maintaining context-aware replies for an improved user experience.</p>
+        </div><!-- End Section Title -->
+
+
+      <div class="chatbot" data-aos="fade-up">
+          <div class="chatbot__header">
+              <h3 class="chatbox__title">Chatbot</h3>
+          </div>
+          <ul class="chatbot__box">
+              <li class="chatbot__chat incoming">
+                  <p>Hi there. How can I help you today?</p>
+              </li>
+          </ul>
+          <div class="chatbot__input-box">
+              <textarea class="chatbot__textarea" placeholder="Enter a message..." required id="userInput"></textarea>
+              <span id="send-btn" class="material-symbols-outlined" onclick="sendMessage()">send</span>
+          </div>
+      </div>
+
+      <div class="isotope-layout margin-bottom-60" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+      <ul class="portfolio-filters" data-aos="fade-up" data-aos-delay="100">
+        <li  class="filter-active"><a href="https://alessandrolorenzdev.vercel.app" target="_blank" class="active"><i class="bi bi-arrow-right-circle"></i><span style="color: white;">Go to Development Projects</span></a></li>
+      </ul><!-- End Portfolio Filters -->
+      </div>
+
+
+        
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Video Portfolio</h2>
           <p>Welcome to my portfolio, where creativity meets precision. Here, you'll find a collection of projects that
             highlight my expertise in video editing, digital effects, and motion design. Each piece reflects my
             commitment to delivering high-quality visuals, with a focus on storytelling, innovation, and technical
@@ -442,9 +473,7 @@
               <li data-filter=".filter-branding">TV Show: Mundo da Leitura</li>
             </ul><!-- End Portfolio Filters -->
 
-            <ul class="portfolio-filters" data-aos="fade-up" data-aos-delay="100">
-              <li  class="filter-active"><a href="https://alessandrolorenzdev.vercel.app" target="_blank" class="active"><i class="bi bi-arrow-right-circle"></i><span style="color: white;">Go to Development Projects</span></a></li>
-            </ul><!-- End Portfolio Filters -->
+
 
             <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 

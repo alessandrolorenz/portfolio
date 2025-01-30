@@ -1,137 +1,164 @@
-<script type="module">
-    import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.module.js';
-    import { GLTFLoader } from 'https://unpkg.com/three@0.126.0/examples/jsm/loaders/GLTFLoader.js';
-    import { OrbitControls } from 'https://unpkg.com/three@0.126.0/examples/jsm/controls/OrbitControls.js';
-
-    document.addEventListener('DOMContentLoaded', () => {
-        // Código Three.js
-        const canvas = document.querySelector('.webgl')
-        const scene = new THREE.Scene()
-        const textureLoader = new THREE.TextureLoader()
-        const sizes = {
-            width: window.innerWidth - 200,
-            height: window.innerHeight - 200
-        }
-
-        // Base camera
-        const camera = new THREE.PerspectiveCamera(5, sizes.width / sizes.height, 0.1, 100)
-        // camera.position.x = 18
-        camera.position.y = 50
-        camera.position.z = 150
-        scene.add(camera)
-        //Controls
-        const controls = new OrbitControls(camera, canvas)
-        controls.enableDamping = true
-        controls.enableZoom = false
-        controls.enablePan = false
-        controls.minDistance = 4
-        controls.maxDistance = 8
 
 
-        // console.log('camera');
-        // console.log(camera);
-        // console.log(scene);
-        // console.log(controls);
 
 
-        // Renderer
-        const renderer = new THREE.WebGLRenderer({
-            canvas: canvas,
-            antialias: true,
-            alpha: true
-        })
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-        renderer.setSize(sizes.width, sizes.height)
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-        renderer.outputEncoding = THREE.sRGBEncoding
-
-        // Materials
-        const bakedTexture = textureLoader.load('/assets/img/lambert5SG_baseColor_4.png')
-        bakedTexture.flipY = false
-        bakedTexture.encoding = THREE.sRGBEncoding
-
-        const bakedMaterial = new THREE.MeshBasicMaterial({
-            map: bakedTexture,
-            side: THREE.DoubleSide,
-        })
-
-        //Loader for the first model
-        const loader = new GLTFLoader()
-        loader.load('/assets/img/36d39cd9-bd12-4da3-9481-d9ec95b535ae.glb',
-            (gltf) => {
-                const model = gltf.scene
-                model.traverse(child => child.material = bakedMaterial)
-                scene.add(model)
-            },
-            (xhr) => {
-                console.log((xhr.loaded / xhr.total * 100) + '% loaded')
-            }
-        )
-
-        // loader.load('/assets/img/Generic-Male.glb',
-        //     (gltf) => {
-        //         const model = gltf.scene;
-        //         model.position.set(1, 0, 0); 
-        //         model.traverse(child => child.material = bakedMaterial)
-
-        //         scene.add(model);
-        //     },
-        //     (xhr) => {
-        //         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-        //     }
-        // );
-
-        setInterval(function () {
+    <script type="module">
+        import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.module.js';
+        import { GLTFLoader } from 'https://unpkg.com/three@0.126.0/examples/jsm/loaders/GLTFLoader.js';
+        import { OrbitControls } from 'https://unpkg.com/three@0.126.0/examples/jsm/controls/OrbitControls.js';
     
-            // if (scene && scene.children[1]) {scene.children[1].rotation.y += 0.01;}
-        }, 5);
-
-        window.addEventListener('resize', () => {
-            sizes.width = window.innerWidth - 200
-            sizes.height = window.innerHeight - 200
-            camera.aspect = sizes.width / sizes.height
-            camera.updateProjectionMatrix()
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.querySelector('.webgl')
+            const scene = new THREE.Scene()
+            const textureLoader = new THREE.TextureLoader()
+            const sizes = {
+                width: window.innerWidth - 200,
+                height: window.innerHeight - 200
+            }
+    
+            // Base camera
+            const camera = new THREE.PerspectiveCamera(5, sizes.width / sizes.height, 0.1, 100)
+            // camera.position.x = 18
+            camera.position.y = 50
+            camera.position.z = 150
+            scene.add(camera)
+            //Controls
+            const controls = new OrbitControls(camera, canvas)
+            controls.enableDamping = true
+            controls.enableZoom = false
+            controls.enablePan = false
+            controls.minDistance = 4
+            controls.maxDistance = 8
+    
+    
+            // console.log('camera');
+            // console.log(camera);
+            // console.log(scene);
+            // console.log(controls);
+    
+    
+            // Renderer
+            const renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                antialias: true,
+                alpha: true
+            })
+    
             renderer.setSize(sizes.width, sizes.height)
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-        })
-
-        let lastScrollTop = 0;
-
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scene && scene.children[1]) {
-                if (scrollTop > lastScrollTop) {
-                    // Scroll down
-                    scene.children[1].rotation.y += 0.1;
-                } else {
-                    // Scroll up
-                    scene.children[1].rotation.y -= 0.1;
+            renderer.outputEncoding = THREE.sRGBEncoding
+    
+            // Materials
+            const bakedTexture = textureLoader.load('/assets/img/lambert5SG_baseColor_4.png')
+            // bakedTexture.flipY = false
+            bakedTexture.encoding = THREE.sRGBEncoding
+    
+            const bakedMaterial = new THREE.MeshBasicMaterial({
+                map: bakedTexture,
+                side: THREE.DoubleSide,
+            })
+    
+            //Loader for the first model
+            const loader = new GLTFLoader()
+            loader.load('/assets/img/36d39cd9-bd12-4da3-9481-d9ec95b535ae.glb',
+                (gltf) => {
+                    const model = gltf.scene
+                    model.traverse(child => child.material = bakedMaterial)
+                    scene.add(model)
+                },
+                (xhr) => {
+                    console.log((xhr.loaded / xhr.total * 100) + '% loaded')
                 }
+            )
+    
+            // loader.load('/assets/img/Generic-Male.glb',
+            //     (gltf) => {
+            //         const model = gltf.scene;
+            //         model.position.set(1, 0, 0); 
+            //         model.traverse(child => child.material = bakedMaterial)
+    
+            //         scene.add(model);
+            //     },
+            //     (xhr) => {
+            //         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+            //     }
+            // );
+    
+            setInterval(function () {
+        
+                // if (scene && scene.children[1]) {scene.children[1].rotation.y += 0.01;}
+            }, 5);
+    
+            window.addEventListener('resize', () => {
+                sizes.width = window.innerWidth - 200
+                sizes.height = window.innerHeight - 200
+                camera.aspect = sizes.width / sizes.height
+                camera.updateProjectionMatrix()
+                renderer.setSize(sizes.width, sizes.height)
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+            })
+    
+            let lastScrollTop = 0;
+    
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scene && scene.children[1]) {
+                    if (scrollTop > lastScrollTop) {
+                        // Scroll down
+                        scene.children[1].rotation.y += 0.1;
+                    } else {
+                        // Scroll up
+                        scene.children[1].rotation.y -= 0.1;
+                    }
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+            });
+    
+            // Animation
+            const tick = () => {
+                // console.log('tick');
+                controls.update()
+                renderer.render(scene, camera)
+                window.requestAnimationFrame(tick)
             }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    
+            tick()
         });
-
-        // Animation
-        const tick = () => {
-            // console.log('tick');
-            controls.update()
-            renderer.render(scene, camera)
-            window.requestAnimationFrame(tick)
-        }
-
-        tick()
-    });
-</script>
-
+    </script>
+</head>
 <style>
     body {
         margin: 0;
+        height: 150vh;
     }
 
     canvas {
         display: block;
         z-index: 2;
     }
-</style>
 
-<canvas class="webgl"></canvas>
+    .row {
+        background: url('/assets/img/textures/sky01.jpg');
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>3D Model</h1>
+            </div>
+            <canvas class="webgl"></canvas>
+        </div>
+    </div>
+
+    
+
+</body>
+</html>
