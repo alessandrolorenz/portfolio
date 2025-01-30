@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   apiResponse = document.getElementById("apiResponse");
 
   userInput.addEventListener("keyup", (e) => {
-    console.log(e.key);
     if (e.key === "Enter") {
       sendMessage();
     }
